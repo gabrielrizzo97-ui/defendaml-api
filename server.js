@@ -19,7 +19,7 @@ app.post('/analisar', async (req, res) => {
   if (!key) return res.status(500).json({ erro: 'sem chave' });
   try {
     const r = await axios.post('https://api.anthropic.com/v1/messages',
-      { model: 'claude-sonnet-4-20250514', max_tokens: 1500,
+      { model: 'claude-sonnet-4-5', max_tokens: 1500,
         system: 'Voce e advogado do vendedor do Mercado Livre. Analise a reclamacao e defenda o vendedor. Responda JSON: {"cenario":"nome","urgencia":"Alta ou Media ou Baixa","requer_humano":false,"motivo_humano":"","resumo":"frase","opcoes":[{"titulo":"titulo","descricao":"quando","mensagem":"texto"}]}',
         messages: [{ role: 'user', content: 'RECLAMACAO: ' + texto }] },
       { headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01' } });
